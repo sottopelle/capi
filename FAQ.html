@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FAQ Animate - Sottopelle</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      background-color: #fff;
+      color: #000;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .logo-top {
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      user-select: none;
+      background-color: #fff;
+      border-bottom: 1px solid #ccc;
+    }
+    .logo-top img {
+      height: 60px;
+      width: 60px;
+      object-fit: cover;
+      border-radius: 50%;
+      cursor: pointer;
+      margin-right: 15px;
+      transition: transform 0.3s ease;
+    }
+    .logo-top img:hover {
+      transform: scale(1.1);
+    }
+    .logo-top h1 {
+      margin: 0;
+      font-weight: 400;
+      font-size: 24px;
+      color: #000;
+    }
+    .logo-top h1 strong {
+      font-weight: 700;
+    }
+
+    main {
+      background-color: #000;
+      flex-grow: 1;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .faq-item {
+      width: 90%;
+      max-width: 700px;
+      background-color: #fff;
+      border-radius: 20px;
+      color: #000;
+      cursor: pointer;
+      user-select: none;
+      font-weight: 600;
+      font-size: 18px;
+      box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      position: relative;
+      padding: 20px 50px 20px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-item:hover {
+      background-color: #000;
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+    }
+    .faq-item[aria-expanded="true"] {
+      background-color: #000;
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+    }
+
+    /* Icon + and - */
+    .faq-icon {
+      font-weight: 700;
+      font-size: 28px;
+      user-select: none;
+      pointer-events: none;
+      transition: transform 0.3s ease;
+    }
+    .faq-item[aria-expanded="true"] .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      color: #222;
+      background: #f9f9f9;
+      border-radius: 0 0 20px 20px;
+      padding: 0 30px;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.4;
+      transition: max-height 0.5s ease, padding 0.5s ease;
+    }
+    .faq-item[aria-expanded="true"] + .faq-answer {
+      max-height: 500px; /* abbastanza alto per testo */
+      padding: 20px 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo-top">
+    <img src="logo.jpg" alt="Logo Sottopelle" onclick="location.href='index.html'" />
+    <h1>Benvenut* in <strong>SOTTOPELLE</strong></h1>
+  </div>
+
+  <main>
+    <button class="faq-item" aria-expanded="false" aria-controls="faq1" id="faq1-btn" onclick="toggleFAQ(this)">
+      Come posso effettuare l'ordine?
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-answer" id="faq1" role="region" aria-labelledby="faq1-btn">
+      In ogni sezione trovi un modulo Google dove puoi preordinare il tuo capo.
+    </div>
+
+    <button class="faq-item" aria-expanded="false" aria-controls="faq2" id="faq2-btn" onclick="toggleFAQ(this)">
+      Perché il pre-order?
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-answer" id="faq2" role="region" aria-labelledby="faq2-btn">
+      Perché vogliamo produrre solo i capi necessari, non dovendo così produrre materiale che poi non verrà utilizzato.
+    </div>
+
+    <button class="faq-item" aria-expanded="false" aria-controls="faq3" id="faq3-btn" onclick="toggleFAQ(this)">
+      I prezzi?
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-answer" id="faq3" role="region" aria-labelledby="faq3-btn">
+      T-shirt: 35€<br />
+      Hoodie: 65€<br />
+      Felpe: 55€<br />
+      Shopper bag: 18€<br />
+      Cappellini: 20€<br /><br />
+      🚚 La spedizione è inclusa nel prezzo.
+    </div>
+
+ <button class="faq-item" aria-expanded="false" aria-controls="faq2" id="faq2-btn" onclick="toggleFAQ(this)">
+      Come effettuerò il pagamento?
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-answer" id="faq2" role="region" aria-labelledby="faq2-btn">
+      Vi verrà mandata una email con la conferma del pre-ordine e le indicazioni per procedere con il pagamento.
+    </div>
+
+  </main>
+
+  <script>
+    function toggleFAQ(button) {
+      const expanded = button.getAttribute('aria-expanded') === 'true';
+      button.setAttribute('aria-expanded', !expanded);
+    }
+  </script>
+</body>
+</html>
