@@ -126,14 +126,11 @@ body {
   animation: gradientMove 6s ease infinite;
 }
 
-/* FAQ e Contatti (solo testo animato) */
-/* FAQ e Contatti con bordo sfumato */
-/* FAQ e Contatti con sfondo bianco, bordo nero sfumato e testo azzurro */
+/* FAQ e Contatti con bordo azzurro sfumato animato */
 .faq, .contatti {
   background-color: #ffffff; /* sfondo bianco */
   color: #00aaff; /* testo azzurro */
-  border: 4px solid;
-  border-image: linear-gradient(270deg, #000000, #555555, #000000) 1;
+  border: 4px solid transparent;
   border-radius: 10px;
   padding: 40px 20px;
   font-weight: 700;
@@ -143,15 +140,39 @@ body {
   align-items: center;
   height: 120px;
   text-decoration: none;
+  position: relative;
+  z-index: 1;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Bordo gradiente animato */
+.faq::before, .contatti::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  padding: 2px; /* spessore bordo */
+  background: linear-gradient(270deg, #00aaff, #55ddff, #00aaff);
+  background-size: 400% 400%;
+  animation: gradientBorder 6s ease infinite;
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: -1;
+}
+
+@keyframes gradientBorder {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .faq:hover, .contatti:hover {
   transform: scale(1.05);
   box-shadow: 0 6px 20px rgba(0,0,0,0.25);
 }
-
-
 /* Animazione gradiente */
 @keyframes gradientMove {
   0% { background-position: 0% 50%; }
